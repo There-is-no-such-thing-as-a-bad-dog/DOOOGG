@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "433452331951",
+    "project_id": "dog-behavior-7dfb6",
+    "storage_bucket": "dog-behavior-7dfb6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433452331951:android:e9d313af6f21523318755a",
+        "android_client_info": {
+          "package_name": "com.example.dooogg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433452331951-vng9ihf9880q75456eu631g4c4ucjudh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dooogg",
+            "certificate_hash": "22bb608151742e0a225f1bc47364dd6d1fa1c141"
+          }
+        },
+        {
+          "client_id": "433452331951-pt3gqftfhnj4dcbf7dtjnbmnh8o793a3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9c6BcB_4DWBA35cKe_lKvNIAd6jODjPY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "433452331951-pt3gqftfhnj4dcbf7dtjnbmnh8o793a3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
