@@ -34,7 +34,7 @@ import com.google.firebase.iid.InstanceIdResult;
 public class MainActivity extends AppCompatActivity {
     WebView video;
     View view;
-    String url = "http://180.189.89.108:5000";
+    String url = "http://121.181.177.60:5000";
     Call<List<action>> call;
     Map<String, Integer> actions = new HashMap<>();
 
