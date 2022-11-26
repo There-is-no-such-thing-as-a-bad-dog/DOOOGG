@@ -4,6 +4,7 @@
     package="com.example.dooogg" >
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -15,12 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DOOOGG"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31" >
-<!--        <service-->
-<!--            android:name=".MyService"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="true" >-->
-<!--        </service>-->
+        tools:targetApi="30" >
 
         <activity
             android:name=".MainActivity"
