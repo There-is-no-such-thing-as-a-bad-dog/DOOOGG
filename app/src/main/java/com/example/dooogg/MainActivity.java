@@ -17,26 +17,26 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
 public class MainActivity extends AppCompatActivity {
     WebView video;
-    //    Socket mSocket;
     View view;
     String url = "http://180.189.89.108:5000";
-//    {
-//        try {
-//            mSocket = IO.socket(url);
-//         } catch (URISyntaxException e) {
-//            System.out.println(e);
-//        }
-//    }
+    Call<List<action>> call;
+    Map<String, Integer> actions = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,40 +51,46 @@ public class MainActivity extends AppCompatActivity {
         video.setInitialScale(100);
         video.loadUrl(url);
         view = (View) findViewById(R.id.view);
+
+        getData();
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), view.class);
+                intent.putExtra("walk", actions.get("walk"));
+                intent.putExtra("bark", actions.get("bark"));
+                intent.putExtra("sit", actions.get("sit"));
+                intent.putExtra("eat", actions.get("eat"));
+                intent.putExtra("lie", actions.get("lie"));
+                intent.putExtra("stand", actions.get("stand"));
                 startActivity(intent);
             }
         });
 
-//        Intent it = new Intent(this,ReceiverService.class);
-//        startService(it);
-        //startForegroundService(it);
-
-        /*
-        // 소켓 통신
-        mSocket.connect();
-        mSocket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                Log.i("연결여부", "성공");
-            }
-        });
-        mSocket.emit("alarm");
-        mSocket.on("alarm", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                Log.i("들어온 값 : ", args[0].toString());
-            }
-        });
-         */
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( MainActivity.this,  new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
                 String newToken = instanceIdResult.getToken();
                 Log.e("newToken", newToken);
+            }
+        });
+
+    }
+
+    void getData() {
+        call = retrofit_client.getApiService().test_api_get();
+        call.enqueue(new Callback<List<action>>() {
+            @Override
+            public void onResponse(Call<List<action>> call, Response<List<action>> response) {
+                List<action> result = response.body();
+                for(int i = 0; i < result.size(); i++) {
+                    actions.put(result.get(i).getAction(), result.get(i).getTime());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<action>> call, Throwable t) {
+                t.printStackTrace();
             }
         });
 
